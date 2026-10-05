@@ -177,7 +177,10 @@
       result.solution.forEach((value, index) => {
         const row = document.createElement('div');
         row.className = 'solution-row';
-        const exact = MatrixSolver.formatNumber(value);\n        const decimal = MatrixSolver.formatDecimal(value);\n        const display = exact.includes('/') ? `${exact} ≈ ${decimal}` : exact;\n        row.innerHTML = `<strong>${variableName(index)}</strong><span>${display}</span>`;
+        const exact = MatrixSolver.formatNumber(value);
+        const decimal = MatrixSolver.formatDecimal(value);
+        const display = exact.includes('/') ? `${exact} ≈ ${decimal}` : exact;
+        row.innerHTML = `<strong>${variableName(index)}</strong><span>${display}</span>`;
         list.appendChild(row);
       });
       solutionContainer.appendChild(list);
@@ -451,20 +454,23 @@
     if (result.classification === 'unique') {
       return result.solution
         .map((value, index) => `${variableName(index)} = ${MatrixSolver.formatNumber(value)}`)
-        .join('\\n');
+        .join('\
+');
     }
 
     if (result.classification === 'infinite') {
       return result.parametricSolution.expressions
         .map(expression => `${variableName(expression.variable)} = ${expression.text}`)
-        .join('\\n');
+        .join('\
+');
     }
 
     return 'El sistema no tiene solución.';
   }
 
   function matrixText(matrix) {
-    return matrix.map(row => row.map(value => MatrixSolver.formatNumber(value)).join('   |   ')).join('\\n');
+    return matrix.map(row => row.map(value => MatrixSolver.formatNumber(value)).join('   |   ')).join('\
+');
   }
 
   function formatEquationsForReport(matrix) {
@@ -542,7 +548,8 @@
     });
 
     lines.push('Generado por Matrix Solver.');
-    return lines.join('\\n');
+    return lines.join('\
+');
   }
 
   function notifyExport(message, isError = false) {
