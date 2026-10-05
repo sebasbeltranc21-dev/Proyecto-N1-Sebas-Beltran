@@ -43,7 +43,7 @@
 
   const examples = {
     unique: { equations: 2, variables: 2, matrix: [['2', '1', '5'], ['1', '-1', '1']] },
-    fraction: { equations: 2, variables: 2, matrix: [['1/3', '1/2', '5/6'], ['2/3', '-1/2', '1/6']] },
+    fraction: { equations: 2, variables: 2, matrix: [['1', '0', '1/3'], ['0', '2', '1/2']] },
     infinite: { equations: 2, variables: 2, matrix: [['1', '1', '2'], ['2', '2', '4']] },
     none: { equations: 2, variables: 2, matrix: [['1', '1', '2'], ['2', '2', '5']] },
     five: {
@@ -177,7 +177,7 @@
       result.solution.forEach((value, index) => {
         const row = document.createElement('div');
         row.className = 'solution-row';
-        row.innerHTML = `<strong>${variableName(index)}</strong><span>${MatrixSolver.formatNumber(value)}</span>`;
+        const exact = MatrixSolver.formatNumber(value);\n        const decimal = MatrixSolver.formatDecimal(value);\n        const display = exact.includes('/') ? `${exact} ≈ ${decimal}` : exact;\n        row.innerHTML = `<strong>${variableName(index)}</strong><span>${display}</span>`;
         list.appendChild(row);
       });
       solutionContainer.appendChild(list);
