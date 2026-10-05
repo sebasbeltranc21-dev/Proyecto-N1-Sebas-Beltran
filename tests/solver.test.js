@@ -94,7 +94,7 @@ assert.equal(Solver.formatNumber('1e-3'), '1/1000');
 assert.equal(Solver.formatNumber('1,5'), '3/2');
 assert.equal(Solver.formatNumber('.5'), '1/2');
 assert.equal(Solver.formatNumber('2.'), '2');
-assert.equal(Solver.formatNumber('-0.25e2'), '-25');
+assert.equal(Solver.formatNumber('-0.25e2'), '-25');\nassert.equal(Solver.formatDecimal('1/3'), '0.333333');\nassert.equal(Solver.formatDecimal('1/4'), '0.25');\nassert.equal(Solver.formatDecimal('-1/2'), '-0.5');
 
 const visual = Solver.solve(unique, 'gauss-jordan');
 assert.ok(Array.isArray(visual.steps[0].focus.rows));
