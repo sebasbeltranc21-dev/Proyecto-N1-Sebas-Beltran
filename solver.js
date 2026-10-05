@@ -528,6 +528,13 @@
     return Fraction.parse(value).toString();
   }
 
+  function formatDecimal(value) {
+    const number = Fraction.parse(value).toNumber();
+    if (!Number.isFinite(number)) return 'valor decimal no disponible';
+    const rounded = Number(number.toFixed(6));
+    return Object.is(rounded, -0) ? '0' : String(rounded);
+  }
+
   function formatSignedFactor(value) {
     const fraction = Fraction.parse(value);
     const absolute = fraction.n < 0n ? fraction.neg() : fraction;
@@ -541,6 +548,7 @@
     gaussJordan,
     gaussian,
     rankOf,
-    formatNumber
+    formatNumber,
+    formatDecimal
   };
 });
