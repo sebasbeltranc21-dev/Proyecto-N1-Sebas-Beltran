@@ -16,7 +16,11 @@ assert.ok(
   html.indexOf('<script src="solver.js"></script>') < html.indexOf('<script src="app.js"></script>'),
   'solver.js debe cargarse antes de app.js'
 );
-assert.ok(app.includes("fraction: { equations: 2, variables: 2, matrix: [['1', '0', '1/3'], ['0', '2', '1/2']] }"));\nassert.ok(app.includes("infinite: { equations: 2, variables: 2, matrix: [['1', '1', '2'], ['2', '2', '4']] }"));\nassert.ok(app.includes("none: { equations: 2, variables: 2, matrix: [['1', '1', '2'], ['2', '2', '5']] }"));\nassert.ok(app.includes('MatrixSolver.formatDecimal(value)'));\nfor (const name of ['unique', 'fraction', 'infinite', 'none', 'five']) {
+assert.ok(app.includes("fraction: { equations: 2, variables: 2, matrix: [['1', '0', '1/3'], ['0', '2', '1/2']] }"));
+assert.ok(app.includes("infinite: { equations: 2, variables: 2, matrix: [['1', '1', '2'], ['2', '2', '4']] }"));
+assert.ok(app.includes("none: { equations: 2, variables: 2, matrix: [['1', '1', '2'], ['2', '2', '5']] }"));
+assert.ok(app.includes('MatrixSolver.formatDecimal(value)'));
+for (const name of ['unique', 'fraction', 'infinite', 'none', 'five']) {
   assert.ok(html.includes('data-example="' + name + '"'), 'Falta preset: ' + name);
 }
 assert.ok(app.includes('localStorage.getItem(HISTORY_KEY)'));
