@@ -8,7 +8,6 @@
   const matrixSizeLabel = document.getElementById('matrixSizeLabel');
   const solveBtn = document.getElementById('solveBtn');
   const clearBtn = document.getElementById('clearBtn');
-  const exampleBtn = document.getElementById('exampleBtn');
   const inputError = document.getElementById('inputError');
   const resultSection = document.getElementById('resultSection');
   const resultBadge = document.getElementById('resultBadge');
@@ -764,19 +763,10 @@
     }
   }
 
-  function loadExample() {
-    const example = examples[exampleBtn.dataset.mode || 'unique'];
-    equationsSelect.value = String(example.equations);
-    variablesSelect.value = String(example.variables);
-    buildMatrix(example.matrix);
-    resetResults();
-  }
-
   populateSelect(equationsSelect, 'ecuación');
   populateSelect(variablesSelect, 'variable');
   equationsSelect.value = '2';
   variablesSelect.value = '2';
-  exampleBtn.dataset.mode = 'unique';
   buildMatrix();
   renderHistory();
 
@@ -792,12 +782,6 @@
     button.addEventListener('click', () => loadExample(button.dataset.example));
   });
 
-  exampleBtn.addEventListener('click', () => {
-    const order = ['unique', 'fraction', 'infinite', 'none'];
-    const current = order.indexOf(exampleBtn.dataset.mode || 'unique');
-    exampleBtn.dataset.mode = order[(current + 1) % order.length];
-    loadExample();
-  });
   stepPrevBtn.addEventListener('click', () => showStep(currentStepIndex - 1));
   stepNextBtn.addEventListener('click', () => showStep(currentStepIndex + 1));
 
